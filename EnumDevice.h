@@ -1,24 +1,6 @@
 #pragma once
 
-#include<dshow.h>
-#include<atlbase.h>
-#include<initguid.h>
-
-static const int DEVICE_NAME_LENGTH = 256;
-struct device_param_info
-{
-	IBaseFilter *pBaseFilter = NULL;
-	char szName[DEVICE_NAME_LENGTH] = { 0 };
-};
-
-struct camera_resolution
-{
-	long lWidth = 0;
-	long lHeight = 0;
-	unsigned short usBitCount = 0;
-	unsigned long ulCompressed = 0;
-	char szFormat[16] = { 0 };
-};
+#include "structures.h"
 
 class CEnumDevice
 {
@@ -46,6 +28,6 @@ public:
 	// ѕеречисл€ет все разрешени€ камеры
 	// ≈сли pDevParamInfo - не задан, то возвращает количество разрешений 
 	// ≈сли pDevParamInfo - задан, то возвращает в него поддерживаемые разрешени€ и форматы
-	int GetCameraResolution(camera_resolution *pCamResolution, IBaseFilter *pBaseFilter);
+	int GetDeviceAvailableResolution(camera_frame_format_info *pCamResolution, IBaseFilter *pBaseFilter);
 };
 
